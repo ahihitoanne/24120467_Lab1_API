@@ -31,11 +31,10 @@ response = requests.post(url, json=payload)
 print(response.json())
 
 Response trả về (JSON):
-JSON
 {
   "input_text": "App này rất tuyệt vời",
   "prediction": "positive",
-  "confidence_score": 0.985421
+  "confidence_score": 0.7774080634117126
 }
 Video Demo Nghiệm thu
 [Bấm vào đây để xem Video Demo]
