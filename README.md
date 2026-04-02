@@ -18,23 +18,53 @@
 4. Khởi động server API: `python -m uvicorn main:app --reload`
 
 ## Hướng dẫn gọi API (Request/Response)
-- **Kiểm tra trạng thái:** `GET /health`
-- **Phân tích cảm xúc:** `POST /predict`
-  
-**Ví dụ Request (Python):**
+Hệ thống cung cấp 2 endpoints chính để tương tác. Dữ liệu giao tiếp được định dạng hoàn toàn bằng **JSON**.
+### 1. Kiểm tra trạng thái hệ thống
+- **Endpoint:** `GET /health`
+- **Mô tả:** Dùng để ping kiểm tra xem server API có đang hoạt động và mô hình AI đã được nạp thành công vào bộ nhớ hay chưa.
+- **Response trả về (200 OK):**
+```json
+{
+  "status": "ok",
+  "message": "Mô hình đã sẵn sàng hoạt động."
+}
+```
+### 2. Phân tích cảm xúc văn bản (Endpoint Chính)
+- **Endpoint:** `POST /predict`
+- **Mô tả:** Nhận dữ liệu văn bản (tiếng Việt hoặc tiếng Anh) từ người dùng, đưa qua mô hình Multilingual DistilBERT và trả về kết quả dự đoán cảm xúc.
+
+**Cấu trúc Request Body:**
+| Tham số | Kiểu dữ liệu | Bắt buộc | Mô tả |
+| :--- | :--- | :---: | :--- |
+| `text` | `string` | Có | Câu văn hoặc đoạn văn bản cần phân tích cảm xúc. |
+
+**💻 Ví dụ Request (Sử dụng Python `requests`):**
 ```python
 import requests
 
 url = "[http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)"
-payload = {"text": "App này rất tuyệt vời"}
-response = requests.post(url, json=payload)
-print(response.json())
-
-Response trả về (JSON):
-{
-  "input_text": "App này rất tuyệt vời",
-  "prediction": "positive",
-  "confidence_score": 0.7774080634117126
+headers = {"Content-Type": "application/json"}
+payload = {
+    "text": "App này thiết kế rất đẹp và trải nghiệm mượt mà!"
 }
-Video Demo Nghiệm thu
-[Bấm vào đây để xem Video Demo]
+
+response = requests.post(url, headers=headers, json=payload)
+print(response.json())
+```
+
+**✅ Ví dụ Response thành công (HTTP Status 200 OK):**
+```json
+{
+  "input_text": "App này thiết kế rất đẹp và trải nghiệm mượt mà!",
+  "prediction": "positive",
+  "confidence_score": 0.985421
+}
+```
+
+**❌ Ví dụ Response báo lỗi (HTTP Status 400 Bad Request):**
+*(Trường hợp người dùng gửi văn bản rỗng)*
+```json
+{
+  "detail": "Văn bản đầu vào không được để trống."
+}
+```
