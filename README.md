@@ -29,8 +29,7 @@ url = "[http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)"
 payload = {"text": "App này rất tuyệt vời"}
 response = requests.post(url, json=payload)
 print(response.json())
-Ví dụ Response trả về (JSON):
-
+##Response trả về (JSON):
 JSON
 {
   "input_text": "App này rất tuyệt vời",
