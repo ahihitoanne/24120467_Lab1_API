@@ -69,7 +69,11 @@ print(response.json())
 }
 ```
 Dưới đây là video demo chi tiết 
-https://github.com/user-attachments/assets/e1dcd2af-76d9-41d0-afd0-f63ec3d2f352
+<video src="https://github.com/user-attachments/assets/12a84fbe-d2f2-4401-b3e9-7c406ccca8ce" width="100%" controls></video>
+
+
+
+
 
 
 
