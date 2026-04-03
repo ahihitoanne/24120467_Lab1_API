@@ -38,7 +38,7 @@ Hệ thống cung cấp 2 endpoints chính để tương tác. Dữ liệu giao 
 | :--- | :--- | :---: | :--- |
 | `text` | `string` | Có | Câu văn hoặc đoạn văn bản cần phân tích cảm xúc. |
 
-**💻 Ví dụ Request (Sử dụng Python `requests`):**
+**Ví dụ Request (Sử dụng Python `requests`):**
 ```python
 import requests
 
@@ -68,3 +68,8 @@ print(response.json())
   "detail": "Văn bản đầu vào không được để trống."
 }
 ```
+Dưới đây là video demo chi tiết 
+https://github.com/user-attachments/assets/e1dcd2af-76d9-41d0-afd0-f63ec3d2f352
+
+
+
